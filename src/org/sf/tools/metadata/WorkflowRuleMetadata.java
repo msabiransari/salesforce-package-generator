@@ -9,39 +9,39 @@ import org.sf.tools.MetadataType;
 
 import com.sforce.soap.metadata.FileProperties;
 
-public class CustomFieldMetadata extends BaseMetadata{
-	private Set<String> customFields=new HashSet<String>();
+public class WorkflowRuleMetadata extends BaseMetadata{
+	private Set<String> workflowRules=new HashSet<>();
 	
-	public CustomFieldMetadata(MetadataManager manager){
+	public WorkflowRuleMetadata(MetadataManager manager){
 		super(manager);
 	}
 	
 	@Override
 	public void process(List<FileProperties> data){
-		SalesforceMetadata customObjectMetadata=manager.getMetadata(MetadataType.CustomObject.toString());
+		SalesforceMetadata workflowMetadata=manager.getMetadata(MetadataType.Workflow.toString());
 		data.stream().map(fp->fp.getFullName()).forEach(s->{
-			customFields.add(s);
-			customObjectMetadata.addMember(s.substring(0, s.indexOf('.')));
+			workflowRules.add(s);
+			workflowMetadata.addMember(s.substring(0, s.indexOf('.')));
 		});
 	}
 	
 	@Override
 	public String toXMLString(){
-		return super.toXMLString(getMetadataType(), customFields);
+		return super.toXMLString(getMetadataType(), workflowRules);
 	}
 	
 	@Override
 	public String getMetadataType(){
-		return MetadataType.CustomField.toString();
+		return MetadataType.WorkflowRule.toString();
 	}
 	
 	@Override
 	public void addMember(String member){
-		customFields.add(member);
+		workflowRules.add(member);
 	}
 	
 	@Override
 	public Integer getSequenceId(){
-		return new Integer(601);
+		return new Integer(501);
 	}
 }

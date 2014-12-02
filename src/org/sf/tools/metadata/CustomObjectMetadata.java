@@ -36,4 +36,9 @@ public class CustomObjectMetadata extends BaseMetadata{
 	public void addMember(String member){
 		customObjects.add(member);
 	}
+	
+	@Override
+	public Integer getSequenceId(){
+		return new Integer(600);
+	}
 }

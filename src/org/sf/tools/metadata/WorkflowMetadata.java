@@ -36,4 +36,9 @@ public class WorkflowMetadata extends BaseMetadata{
 	public void addMember(String member){
 		workflows.add(member);
 	}
+	
+	@Override
+	public Integer getSequenceId(){
+		return new Integer(500);
+	}
 }

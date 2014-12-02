@@ -44,7 +44,8 @@ public enum MetadataType {
 	ValidationRule ("ValidationRule"),
 	WebLink ("WebLink"),
 	Workflow ("Workflow"),
-	WorkflowAlert("WorkflowAlert");
+	WorkflowAlert("WorkflowAlert"),
+	WorkflowRule("WorkflowRule");
 	
 	private final String metadataName;
 	

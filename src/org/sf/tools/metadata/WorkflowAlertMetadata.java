@@ -3,7 +3,6 @@ package org.sf.tools.metadata;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.sf.tools.MetadataManager;
 import org.sf.tools.MetadataType;
@@ -19,7 +18,11 @@ public class WorkflowAlertMetadata extends BaseMetadata{
 	
 	@Override
 	public void process(List<FileProperties> data){
-		workflowAlerts.addAll(data.stream().map(fp->fp.getFullName()).collect(Collectors.toSet()));
+		SalesforceMetadata workflowMetadata=manager.getMetadata(MetadataType.Workflow.toString());
+		data.stream().map(fp->fp.getFullName()).forEach(s->{
+			workflowAlerts.add(s);
+			workflowMetadata.addMember(s.substring(0, s.indexOf('.')));
+		});
 	}
 	
 	@Override
@@ -35,5 +38,10 @@ public class WorkflowAlertMetadata extends BaseMetadata{
 	@Override
 	public void addMember(String member){
 		workflowAlerts.add(member);
+	}
+	
+	@Override
+	public Integer getSequenceId(){
+		return new Integer(502);
 	}
 }
