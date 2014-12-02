@@ -43,7 +43,8 @@ public enum MetadataType {
 	StaticResource ("StaticResource"),
 	ValidationRule ("ValidationRule"),
 	WebLink ("WebLink"),
-	Workflow ("Workflow");
+	Workflow ("Workflow"),
+	WorkflowAlert("WorkflowAlert");
 	
 	private final String metadataName;
 	
